@@ -1,0 +1,62 @@
+Assignment #2 Total 15 marks, due Monday Feb 2nd
+
+
+The folder “FrontEnd” contains an html file index.js which is a simple website to
+display the weather for several cities. There is also a javascript file which has a
+DOMContentLoaded handler and a change event handler for the city select element.
+There is a backend folder which is empty. This is where we will be creating a file
+index.js that will contain a simple express server.
+
+We will be using the openweathermap.org/api to get the weather forecast. You must
+go to the openweathermap.org website and register for an api key.
+
+Part 1: Create a simple express server, to return a fake weather report for each of
+the cities. (10 Marks) SAVE A COPY OF YOUR index.mjs file named
+index_part1.mjs before moving on to part 2.
+Steps:
+
+1- In the backend folder, setup an npm package. This will allow you to make use of
+npm modules such as express.
+
+2- In the backend folder, setup a simple express server in the index.mjs file. Have
+one POST request route which accepts json data containing the city. EX// { “city”:
+“Toronto”}. The route should return a weather report in JSON format with the
+following information:
+-description ( Rain, Snow, Clouds, Sunshine etc. )
+-temperature ( make sure to display it in degrees Celsius)
+-windspeed
+Just make up a different weather report for each city.
+
+3- Test your backend api in postman to make sure it is working.
+
+4- Connect your front end to the backend by making a fetch call in the select
+element change event handler. Perform dom scripting to display the weather
+information in the front end.
+(Note that in order for your front end to work with the backend you will need to
+setup the cors package middleware as shown in the book)
+
+Part 2: Modify the express server to use the openweathermap.org/api to get
+accurate weather info for each of the cities. ( 5 marks )
+
+Have the backend perform a fetch call to the
+https://openweathermap.org/current api. Using the JSON response, have the route
+return the same information as before in part 1. ( description, temperature,
+windspeed)
+
+
+SUPER BONUS ( 2 marks, you must complete both in order to get the bonus)
+a) The cors middleware is used to allow the front end to make api calls to the
+backend. This is needed because they are being run as two different servers
+( front end is run through live server ) ( backend is run through the express
+module ).
+
+A better approach in this situation would be to have the express server also serve
+the front end. Complete this step:
+
+1) Remove the cors middleware from the backend
+
+2) Add a get route for the ‘/’ root of the backend which returns the files in the
+front end.
+
+b) Enhance the front end. Based on the description of the weather, have your
+website display an image related to the description.
