@@ -1,0 +1,29 @@
+Eric's lottery is a new lottery sweeping the province.  It can be purchased at any Marie's Mini Mart.  To play Eric's lottery you choose 5 numbers between 1 and 15.  The numbers may repeat.
+
+Use npm init and create a node/express server which:
+
+1) When launched, generates a winning sequence for Eric's lotto at random
+
+2) Has an api post route /api/checkticket which determines if a prize is won.  The route will receive the 5 numbers to check and will return what the prize is.
+
+Prizes for Eric's lotto are as follows:
+
+0 numbers match, "You Lose"
+
+1 number matches, "$5"
+
+2 numbers match, "$10"
+
+3 numbers match, "$15"
+
+4 number match, "$100"
+
+5 numbers match, "$100000"
+
+(have your server console log the winning numbers to help you test the api using postman)
+
+Once you have tested the backend server using postman, the last step is to connect the front end to the back end.
+
+In the frontend folder modify the lottery.js file so it makes a fetch request to the backend and then with the response it displays the number of matching numbers and the prize.
+
+Please see the two images Frontend1.jpg and Frontend2.jpg.
