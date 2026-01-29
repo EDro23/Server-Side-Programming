@@ -1,42 +1,51 @@
 import express from 'express';
-import cors from 'cors';
+import fetch from 'node-fetch';
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
 
-const weatherReports = {
-    "Toronto": {
-        description: "Sunny",
-        temperature: 18,
-        windSpeed: "11 km/h"
-    },
-    "Vancouver": {
-        description: "Cloudy",
-        temperature: 12,
-        windSpeed: "37 km/h"
-    },
-    "Montreal": {
-        description: "Partly Cloudy",
-        temperature: 15,
-        windSpeed: "15 km/h"
-    },
-    "Halifax": {
-        description: "Rain",
-        temperature: 9,
-        windSpeed: "22 km/h"
-    }
-};
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-app.post("/api/weather", (request, response) => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, '../FrontEnd')));
+
+const API_KEY = "f783bfffc29a7bf54993775e96b07101";
+
+app.post("/api/weather", async (request, response) => {
     const { city } = request.body;
-    const report = weatherReports[city];
-    if (report) {
-        response.json(report);
-    } else {
-        response.status(404).json({ error: "City not found" });
+
+    if (!city) {
+        return response.status(400).json({ error: "City is required" });
     }
+
+    try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+        const apiResponse = await fetch(url);
+        const data = await apiResponse.json();
+
+        if (!apiResponse.ok) {
+            return response.status(404).json({ error: data.message });
+        }
+
+        const report = {
+            description: data.weather[0].description,
+            temperature: data.main.temp,
+            windSpeed: `${data.wind.speed} km/h`
+        };
+
+        response.json(report);
+
+    } catch (error) {
+        response.status(500).json({ error: "Unable to fetch weather data" });
+    }
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../FrontEnd', 'index.html'));
 });
 
 app.listen(3000, () => {
