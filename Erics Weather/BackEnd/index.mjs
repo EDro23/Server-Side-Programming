@@ -40,7 +40,7 @@ app.post("/api/weather", async (request, response) => {
         response.json(report);
 
     } catch (error) {
-        response.status(500).json({ error: "Unable to fetch weather data" });
+        response.status(500).json({ error: "Could not fetch weather data" });
     }
 });
 

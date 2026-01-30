@@ -46,15 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (description.includes("cloud")) {
                 img.src = "images/cloudy.gif";
             } else if (description.includes("rain")) {
-                img.src = "images/rain.gif";
+                img.src = "images/rainy.gif";
             } else if (description.includes("snow")) {
-                img.src = "images/snow.gif";
+                img.src = "images/snowy.gif";
             } else {
                 img.src = "";
             }
         })
         .catch(error => {
-            console.error("There was a problem with the fetch operation:", error);
+            console.error("There was a problem", error);
             report.textContent = "Unable to retrieve weather data.";
             img.src = '';
         });
