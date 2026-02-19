@@ -22,7 +22,7 @@ return (
     <main className="min-h-screen flex items-center justify-center bg-zinc-100 dark:bg-black p-6">
         <div className="max-w-xl w-full">
             <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden p-6">
-                {/* Larger image: adjust w-72/h-72 and sm:w-96/sm:h-96 as needed */}
+                
                 <img
                     src={character.image}
                     alt={character.name}

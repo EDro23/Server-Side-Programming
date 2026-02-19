@@ -1,5 +1,3 @@
-// app/components/Character.jsx
-
 export default function Character({ name, species, image }) {
   return (
     <div className="bg-white dark:bg-zinc-900 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 p-4 flex flex-col items-center">

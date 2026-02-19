@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Character from "../components/Character"; // your card component
+import Character from "../components/Character";
 
 export default async function Page() {
   const res = await fetch("https://rickandmortyapi.com/api/character");
@@ -10,7 +10,6 @@ export default async function Page() {
 
 return (
     <main className="min-h-screen bg-zinc-50 dark:bg-black p-8 pt-20">
-        {/* adjust pt-20 to match your fixed navbar height */}
         <h1 className="text-3xl font-bold mb-8 text-center text-zinc-800 dark:text-white">
             Characters
         </h1>
