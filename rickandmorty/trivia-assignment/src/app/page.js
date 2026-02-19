@@ -25,12 +25,12 @@ export default function Home() {
               className="rounded-xl shadow-lg"
             />
             <h1 className="text-4xl font-bold text-black dark:text-white">
-              Welcome to Rick and Morty Trivia
+              The Rick and Morty Characters Page
             </h1>
             <p className="text-lg text-zinc-700 dark:text-zinc-300">
-              Test your knowledge of the Rick and Morty universe.
+              View the characters of the Rick and Morty universe.
               <br />
-              Use the Characters page to get started.
+              Use the Characters tab to get started.
             </p>
           </div>
         </main>
