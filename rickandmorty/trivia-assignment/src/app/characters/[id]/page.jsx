@@ -8,8 +8,7 @@ export default async function CharacterDetail({ params }) {
   }
 
   const res = await fetch(
-    `https://rickandmortyapi.com/api/character/${id}`,
-    { cache: "no-store" }
+    `https://rickandmortyapi.com/api/character/${id}`
   );
 
   if (!res.ok) {
@@ -47,4 +46,13 @@ return (
         </div>
     </main>
 );
+}
+
+export async function generateStaticParams() {
+  const res = await fetch("https://rickandmortyapi.com/api/character");
+  const data = await res.json();
+
+  return data.results.map((character) => ({
+    id: character.id.toString(),
+  }));
 }
