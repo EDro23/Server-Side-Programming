@@ -25,7 +25,7 @@ export default function Home() {
               className="rounded-xl shadow-lg"
             />
             <h1 className="text-4xl font-bold text-black dark:text-white">
-              The Rick and Morty Characters Page
+              The Rick and Morty Characters Page *Small change*
             </h1>
             <p className="text-lg text-zinc-700 dark:text-zinc-300">
               View the characters of the Rick and Morty universe.
