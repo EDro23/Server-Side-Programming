@@ -8,6 +8,7 @@ export default async function Page() {
   }
   const { results: characters = [] } = await res.json();
 
+
 return (
     <main className="min-h-screen bg-zinc-50 dark:bg-black p-8 pt-20">
         <h1 className="text-3xl font-bold mb-8 text-center text-zinc-800 dark:text-white">
