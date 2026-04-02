@@ -8,7 +8,8 @@ export default async function CharacterDetail({ params }) {
   }
 
   const res = await fetch(
-    `https://rickandmortyapi.com/api/character/${id}`
+    `http://localhost:3000/api/characters/${id}`,
+    { cache: "no-store" }
   );
 
   if (!res.ok) {
@@ -17,42 +18,33 @@ export default async function CharacterDetail({ params }) {
 
   const character = await res.json();
 
-return (
+  return (
     <main className="min-h-screen flex items-center justify-center bg-zinc-100 dark:bg-black p-6">
-        <div className="max-w-xl w-full">
-            <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden p-6">
-                
-                <img
-                    src={character.image}
-                    alt={character.name}
-                    className="mx-auto rounded-md w-72 h-72 sm:w-96 sm:h-96 object-cover"
-                />
+      <div className="max-w-xl w-full">
+        <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden p-6">
+          
+          <img
+            src={character.image}
+            alt={character.name}
+            className="mx-auto rounded-md w-72 h-72 sm:w-96 sm:h-96 object-cover"
+          />
 
-                <div className="mt-4 text-center">
-                    <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
-                        {character.name}
-                    </h2>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-300">
-                        {character.species}
-                    </p>
-                </div>
+          <div className="mt-4 text-center">
+            <h2 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100">
+              {character.name}
+            </h2>
+            <p className="text-sm text-zinc-600 dark:text-zinc-300">
+              {character.species}
+            </p>
+          </div>
 
-                <div className="mt-6 text-center text-zinc-700 dark:text-zinc-300">
-                    <p>Status: {character.status}</p>
-                    <p>Gender: {character.gender}</p>
-                    <p>Origin: {character.origin.name}</p>
-                </div>
-            </div>
+          <div className="mt-6 text-center text-zinc-700 dark:text-zinc-300">
+            <p>Status: {character.status}</p>
+            <p>Gender: {character.gender}</p>
+            <p>Origin: {character.origin?.name || "Unknown"}</p>
+          </div>
         </div>
+      </div>
     </main>
-);
-}
-
-export async function generateStaticParams() {
-  const res = await fetch("https://rickandmortyapi.com/api/character");
-  const data = await res.json();
-
-  return data.results.map((character) => ({
-    id: character.id.toString(),
-  }));
+  );
 }

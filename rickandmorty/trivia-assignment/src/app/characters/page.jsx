@@ -2,34 +2,37 @@ import Link from "next/link";
 import Character from "../components/Character";
 
 export default async function Page() {
-  const res = await fetch("https://rickandmortyapi.com/api/character");
+  const res = await fetch("http://localhost:3000/api/characters", {
+    cache: "no-store",
+  });
+
   if (!res.ok) {
     throw new Error("Failed to fetch characters");
   }
-  const { results: characters = [] } = await res.json();
 
+  const characters = await res.json();
 
-return (
+  return (
     <main className="min-h-screen bg-zinc-50 dark:bg-black p-8 pt-20">
-        <h1 className="text-3xl font-bold mb-8 text-center text-zinc-800 dark:text-white">
-            Characters
-        </h1>
+      <h1 className="text-3xl font-bold mb-8 text-center text-zinc-800 dark:text-white">
+        Characters
+      </h1>
 
-        <div className="max-w-7xl mx-auto grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {characters.map((character) => (
-                <Link
-                    key={character.id}
-                    href={`/characters/${character.id}`}
-                    className="hover:scale-105 transition-transform duration-300"
-                >
-                    <Character
-                        name={character.name}
-                        species={character.species}
-                        image={character.image}
-                    />
-                </Link>
-            ))}
-        </div>
+      <div className="max-w-7xl mx-auto grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {characters.map((character) => (
+          <Link
+            key={character.id}
+            href={`/characters/${character.id}`}
+            className="hover:scale-105 transition-transform duration-300"
+          >
+            <Character
+              name={character.name}
+              species={character.species}
+              image={character.image}
+            />
+          </Link>
+        ))}
+      </div>
     </main>
-);
+  );
 }
